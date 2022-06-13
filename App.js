@@ -1,10 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import { useState } from "react"
-import { StyleSheet, Text, TouchableOpacity, View, ActivityIndicator  } from 'react-native';
+import { useEffect, useState } from "react";
+import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+
 
 export default function App() {
   const[loading,setLoading]=useState(true);
+  const BUSSTOP_URL = "https://arrivelah2.busrouter.sg/?id=83139"
 
+
+  function loadBusStopData(){
+    fetch(BUSSTOP_URL)
+    .then ((response)=>{
+      return response.json();
+    })
+    .then((responseData)=>{
+      console.log (responseData);
+      return responseData;
+    });
+  }
+
+  useEffect(() => {
+    loadBusStopData();
+  }, []);
+  
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Bus Arrival Time:</Text>
