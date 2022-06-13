@@ -14,7 +14,11 @@ export default function App() {
     })
     .then((responseData)=>{
       console.log (responseData);
-      return responseData;
+      const myBus = responseData.services.filter(
+        (service) => service.no=="155"     
+      )[0];
+      console.log(myBus);
+    
     });
   }
 
