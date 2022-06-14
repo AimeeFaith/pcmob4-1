@@ -18,8 +18,10 @@ export default function App() {
       const myBus = responseData.services.filter(
         (service) => service.no=="155"     
       )[0];
-      console.log(myBus.next.time);
-      setArrival (myBus.next.time);
+      const duration_ms = myBus.next.duration_ms;
+      console.log(duration_ms);
+      const duration_mins = Math.floor(duration_ms/60000);
+      setArrival (duration_mins);
       setLoading(false);
     
     });
