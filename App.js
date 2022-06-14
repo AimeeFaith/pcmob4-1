@@ -26,7 +26,8 @@ export default function App() {
   }
 
   useEffect(() => {
-    loadBusStopData();
+    const interval = setInterval (loadBusStopData,1000);
+    return()=>clearInterval(interval);
   }, []);
   
   return (
