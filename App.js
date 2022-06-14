@@ -21,7 +21,7 @@ export default function App() {
       const duration_ms = myBus.next.duration_ms;
       console.log(duration_ms);
       const duration_mins = Math.floor(duration_ms/60000);
-      setArrival (`${duration_mins}minutes`);
+      setArrival (`${duration_mins} minutes`);
       setLoading(false);
     
     });
