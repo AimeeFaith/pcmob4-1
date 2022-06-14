@@ -4,6 +4,7 @@ import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from 'rea
 
 export default function App() {
   const[loading,setLoading]=useState(true);
+  const[arrival,setArrival]=useState("");
   const BUSSTOP_URL = "https://arrivelah2.busrouter.sg/?id=83139"
 
 
@@ -17,7 +18,9 @@ export default function App() {
       const myBus = responseData.services.filter(
         (service) => service.no=="155"     
       )[0];
-      console.log(myBus);
+      console.log(myBus.next.time);
+      setArrival (myBus.next.time);
+      setLoading(false);
     
     });
   }
@@ -30,7 +33,7 @@ export default function App() {
     <View style={styles.container}>
       <Text style={styles.title}>Bus Arrival Time:</Text>
       <Text style={styles.arrivalTime}>
-        {loading?<ActivityIndicator color="blue"/> : "Loaded"}
+        {loading?<ActivityIndicator color="blue"/> : arrival}
         </Text>  
         <TouchableOpacity
         style = {styles.button}
